@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 import * as crypto from 'crypto';
+import fetch from 'node-fetch';
 
 // This test uses direct HTTP calls to IPFS gateways and APIs
 describe('IPFS HTTP API Tests', () => {

@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import fetch from 'node-fetch';
+import FormData from 'form-data';
 
 /**
  * Core IPFS client implementation using HTTP API
@@ -57,8 +59,10 @@ export class IPFSCore {
 
       // Create form data with the file
       const formData = new FormData();
-      const file = new Blob([fileContent]);
-      formData.append('file', file, fileName);
+      formData.append('file', fileContent, {
+        filename: fileName,
+        contentType: 'application/octet-stream',
+      });
 
       // Using the Hippius storage API
       const response = await fetch(`${this.apiUrl}/api/v0/add`, {
@@ -93,8 +97,10 @@ export class IPFSCore {
     try {
       // Create form data with the file
       const formData = new FormData();
-      const file = new Blob([data]);
-      formData.append('file', file, filename);
+      formData.append('file', Buffer.from(data), {
+        filename: filename,
+        contentType: 'application/octet-stream',
+      });
 
       // Using the Hippius storage API
       const response = await fetch(`${this.apiUrl}/api/v0/add`, {
@@ -293,4 +299,4 @@ export class IPFSCore {
     // Nothing to do for HTTP API
     return;
   }
-}
+} // End of IPFSCore class

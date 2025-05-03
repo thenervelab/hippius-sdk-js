@@ -13,3 +13,18 @@ process.env = {
 console.log = jest.fn();
 console.warn = jest.fn();
 console.error = jest.fn();
+
+// Mock node-fetch
+jest.mock('node-fetch', () => {
+  return jest.fn().mockImplementation(() =>
+    Promise.resolve({
+      ok: true,
+      status: 200,
+      statusText: 'OK',
+      text: () => Promise.resolve('This is a test file for Hippius SDK.'),
+      json: () => Promise.resolve({ Hash: 'QmTestHash123', cid: 'QmTestHash123' }),
+      arrayBuffer: () =>
+        Promise.resolve(new TextEncoder().encode('This is a test file for Hippius SDK.').buffer),
+    })
+  );
+});

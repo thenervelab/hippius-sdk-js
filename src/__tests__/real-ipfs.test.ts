@@ -7,7 +7,7 @@ import { IPFSClient } from '../ipfs';
 // This test directly uses the IPFS network
 // It is skipped by default to avoid network dependencies in CI
 // Run with: npx jest src/__tests__/real-ipfs.test.ts
-describe('Hippius SDK Integration Tests (Real IPFS)', () => {
+describe.skip('Hippius SDK Integration Tests (Real IPFS)', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let client: HippiusClient;
   let ipfsClient: IPFSClient;
