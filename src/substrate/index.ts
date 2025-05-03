@@ -378,7 +378,6 @@ export class SubstrateClient {
       // Query the blockchain for account balance
       console.log(`Querying balance for account: ${address}`);
 
-      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.system.account(address);
 
       // If account exists, extract the balance information
@@ -470,7 +469,6 @@ export class SubstrateClient {
       // Query the blockchain for free credits
       console.log(`Querying free credits for account: ${address}`);
 
-      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.credits.freeCredits(address);
 
       // If credits exist, convert to a float with 18 decimal places
@@ -537,7 +535,6 @@ export class SubstrateClient {
       // Query the blockchain for the user profile CID
       console.log(`Querying user profile for account: ${address}`);
 
-      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.ipfsPallet.userProfile(address);
 
       // Check if a profile was found
