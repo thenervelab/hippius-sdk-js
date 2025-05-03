@@ -1,12 +1,18 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { Keyring } from '@polkadot/keyring';
-import { hexToU8a, u8aToHex } from '@polkadot/util';
+import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  hexToU8a,
+  u8aToHex,
+} from '@polkadot/util';
 import { mnemonicGenerate, mnemonicValidate } from '@polkadot/util-crypto';
 import {
   getConfigValue,
   getAccountAddress,
   getActiveAccount,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setActiveAccount,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setSeedPhrase,
   getSeedPhrase,
 } from '../config';
@@ -268,6 +274,7 @@ export class SubstrateClient {
       }));
 
       // Convert to JSON string
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const filesJson = JSON.stringify(fileList, null, 2);
       console.log(`Created file list with ${fileList.length} entries`);
 
@@ -318,6 +325,7 @@ export class SubstrateClient {
   async storeCid(
     cid: string,
     filename: string | null = null,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     metadata: Record<string, any> | null = null
   ): Promise<string> {
     const fileInput = new FileInput(cid, filename || 'unnamed_file');
@@ -370,7 +378,7 @@ export class SubstrateClient {
       // Query the blockchain for account balance
       console.log(`Querying balance for account: ${address}`);
 
-      // @ts-ignore - The types for query might not match perfectly, but this works
+      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.system.account(address);
 
       // If account exists, extract the balance information
@@ -462,7 +470,7 @@ export class SubstrateClient {
       // Query the blockchain for free credits
       console.log(`Querying free credits for account: ${address}`);
 
-      // @ts-ignore - The types for query might not match perfectly, but this works
+      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.credits.freeCredits(address);
 
       // If credits exist, convert to a float with 18 decimal places
@@ -529,7 +537,7 @@ export class SubstrateClient {
       // Query the blockchain for the user profile CID
       console.log(`Querying user profile for account: ${address}`);
 
-      // @ts-ignore - The types for query might not match perfectly, but this works
+      // @ts-expect-error - The types for query might not match perfectly, but this works
       const result = await this._substrate.query.ipfsPallet.userProfile(address);
 
       // Check if a profile was found

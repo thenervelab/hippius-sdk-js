@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as crypto from 'crypto';
 import { IPFSClient } from '../ipfs';
 
@@ -13,9 +14,12 @@ jest.mock('../ipfs/ipfs-core', () => {
         ensureInitialized: jest.fn().mockResolvedValue(undefined),
         helia: {},
         fs: {},
-        addFile: jest.fn().mockImplementation(filePath => {
-          return Promise.resolve({ Hash: 'QmTestHash123' });
-        }),
+        addFile: jest.fn().mockImplementation(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          filePath => {
+            return Promise.resolve({ Hash: 'QmTestHash123' });
+          }
+        ),
         cat: jest.fn().mockImplementation(cid => {
           // For testing decryption, return a mock encrypted content if cid contains "encrypted"
           if (cid.includes('encrypted')) {
@@ -29,9 +33,12 @@ jest.mock('../ipfs/ipfs-core', () => {
         downloadFile: jest.fn().mockImplementation((cid, outputPath) => {
           return Promise.resolve(outputPath);
         }),
-        exists: jest.fn().mockImplementation(cid => {
-          return Promise.resolve(true);
-        }),
+        exists: jest.fn().mockImplementation(
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          cid => {
+            return Promise.resolve(true);
+          }
+        ),
         pin: jest.fn().mockImplementation(cid => {
           return Promise.resolve({ Pins: [cid] });
         }),

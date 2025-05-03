@@ -61,31 +61,38 @@ export function formatSize(sizeBytes: number): string {
  * @returns A function that will retry with exponential backoff
  */
 export function retryWithBackoff<T>(fn: () => Promise<T>, maxRetries: number = 3): Promise<T> {
-  return new Promise(async (resolve, reject) => {
+  // Rewrite this to avoid using async in the Promise executor which is a linting error
+  return new Promise((resolve, reject) => {
     let lastError: Error | null = null;
+    let attempt = 0;
 
-    for (let attempt = 0; attempt < maxRetries; attempt++) {
-      try {
-        const result = await fn();
-        return resolve(result);
-      } catch (error) {
-        lastError = error as Error;
+    const attemptFn = () => {
+      fn()
+        .then(result => {
+          resolve(result);
+        })
+        .catch(error => {
+          lastError = error as Error;
 
-        // Last attempt, don't wait, just fail
-        if (attempt === maxRetries - 1) {
-          break;
-        }
+          // Last attempt, don't wait, just fail
+          if (attempt >= maxRetries - 1) {
+            reject(lastError);
+            return;
+          }
 
-        // Calculate wait time with exponential backoff
-        const waitTime = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s, ...
-        console.warn(`Attempt ${attempt + 1} failed: ${error}. Retrying in ${waitTime / 1000}s...`);
+          // Calculate wait time with exponential backoff
+          const waitTime = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s, ...
+          console.warn(
+            `Attempt ${attempt + 1} failed: ${error}. Retrying in ${waitTime / 1000}s...`
+          );
 
-        // Wait before next attempt
-        await new Promise(r => setTimeout(r, waitTime));
-      }
-    }
+          // Wait before next attempt
+          attempt++;
+          setTimeout(attemptFn, waitTime);
+        });
+    };
 
-    // All retries failed
-    reject(lastError);
+    // Start the first attempt
+    attemptFn();
   });
 }

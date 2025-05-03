@@ -66,6 +66,7 @@ const mockSubstrateClient = {
 (SubstrateClient as jest.Mock).mockImplementation(() => mockSubstrateClient);
 
 // Also mock the FileInput class
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class MockFileInput {
   fileHash: string;
   fileName: string;

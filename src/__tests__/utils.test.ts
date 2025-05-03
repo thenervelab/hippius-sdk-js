@@ -4,8 +4,9 @@ describe('Utils', () => {
   describe('formatCid', () => {
     it('returns empty string for falsy values', () => {
       expect(formatCid('')).toBe('');
-      expect(formatCid(null as any)).toBe('');
-      expect(formatCid(undefined as any)).toBe('');
+      // Using explicit types to avoid lint warnings
+      expect(formatCid(null as unknown as string)).toBe('');
+      expect(formatCid(undefined as unknown as string)).toBe('');
     });
 
     it('returns the same CID for valid IPFS CIDs', () => {

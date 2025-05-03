@@ -6,6 +6,7 @@ import * as crypto from 'crypto';
 // This test uses direct HTTP calls to IPFS gateways and APIs
 describe('IPFS HTTP API Tests', () => {
   const ipfsGateway = 'https://get.hippius.network';
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const ipfsApiUrl = 'https://store.hippius.network';
 
   let testFile: string;
@@ -112,6 +113,7 @@ describe('IPFS HTTP API Tests', () => {
     const encryptedData = Buffer.concat([cipher.update(data), cipher.final()]);
 
     // Add the IV to the encrypted data (needed for decryption)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const encryptedWithIv = Buffer.concat([iv, encryptedData]);
 
     // Decrypt the data

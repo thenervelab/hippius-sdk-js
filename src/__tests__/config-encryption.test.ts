@@ -5,6 +5,7 @@ import {
   setSeedPhrase,
   getSeedPhrase,
   setActiveAccount,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getActiveAccount,
   loadConfig,
 } from '../config';

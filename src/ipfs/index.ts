@@ -242,6 +242,7 @@ export class IPFSClient {
    */
   async uploadDirectory(
     dirPath: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     includeFormattedSize: boolean = true,
     encrypt: boolean | null = null
   ): Promise<{
@@ -268,7 +269,9 @@ export class IPFSClient {
     }
 
     // Get directory info
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let fileCount = 0;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let totalSizeBytes = 0;
 
     // Calculate directory size and file count

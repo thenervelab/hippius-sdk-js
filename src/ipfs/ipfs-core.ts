@@ -255,7 +255,11 @@ export class IPFSCore {
    * @param recursive Whether to add recursively
    * @returns Dict containing the CID and other information about the directory
    */
-  async addDirectory(dirPath: string, recursive: boolean = true): Promise<{ Hash: string }> {
+  async addDirectory(
+    dirPath: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    recursive: boolean = true
+  ): Promise<{ Hash: string }> {
     if (!fs.existsSync(dirPath)) {
       throw new Error(`Directory ${dirPath} not found`);
     }
