@@ -38,6 +38,9 @@
     "url": "https://github.com/thenervelab/hippius-sdk-js/issues"
   },
   "homepage": "https://hippius.com/",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.3",
