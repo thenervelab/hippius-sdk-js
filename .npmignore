@@ -1,0 +1,43 @@
+# Source files
+src/
+
+# Tests
+**/__tests__/
+**/*.spec.ts
+**/*.test.ts
+**/setupTests.ts
+jest.config.js
+coverage/
+
+# Configuration files
+.github/
+.gitignore
+tsconfig.json
+.eslintrc
+.eslintignore
+.prettierrc
+.editorconfig
+.env*
+
+# Documentation files
+docs/
+examples/
+hippius-py-sdk/
+
+# CI/CD
+.github/
+
+# Development tooling
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Misc
+node_modules/
+temp/
+tmp/
