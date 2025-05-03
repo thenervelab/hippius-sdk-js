@@ -1,5 +1,5 @@
 {
-  "name": "hippius",
+  "name": "hippius-sdk",
   "version": "0.0.1",
   "description": "JavaScript SDK for interacting with the Hippius IPFS network",
   "main": "dist/index.js",
